@@ -18,9 +18,8 @@ channels: Dict[int, int] = {}
 
 
 def set_channel(chat_id: int, channel_id: int) -> bool:
-    if chat_id in channels:
-        if channels[chat_id] == channel_id:
-            return False
+    if chat_id in channels and channels[chat_id] == channel_id:
+        return False
     channels[chat_id] = channel_id
     return True
 
@@ -33,6 +32,4 @@ def rm_channel(chat_id: int) -> bool:
 
 
 def get_channel(chat_id: int):
-    if chat_id in channels:
-        return channels[chat_id]
-    return chat_id
+    return channels[chat_id] if chat_id in channels else chat_id

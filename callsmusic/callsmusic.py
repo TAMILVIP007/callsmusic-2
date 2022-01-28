@@ -26,9 +26,8 @@ async def play(chat_id: int, file_path: str) -> int:
     chat_id = get_channel(chat_id)
     if chat_id in pytgcalls.active_calls:
         return await queues.put(chat_id, file_path=file_path)
-    else:
-        pytgcalls.join_group_call(chat_id, file_path)
-        return -1
+    pytgcalls.join_group_call(chat_id, file_path)
+    return -1
 
 
 def play_next(chat_id: int):
